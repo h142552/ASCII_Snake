@@ -1,9 +1,9 @@
 package no.hib.dat100;
 
 public class Ground {
-    private char renderObject;
+    private static char renderObject = ' ';
 
-    public Ground(char renderObject) { this.renderObject = renderObject; }
+    //public Ground(char renderObject) { renderObject = renderObject; }
 
-    public char getRenderObject() { return renderObject; }
+    public static char getRenderObject() { return renderObject; }
 }

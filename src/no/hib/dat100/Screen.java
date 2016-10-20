@@ -1,9 +1,11 @@
 package no.hib.dat100;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class Screen {
-    private HashMap<Position, Object> renderList;
+    //private HashMap<Position, Object> renderList;
+    private RenderObject[][] rl; // sorted array
     private int height;
     private int width;
 
@@ -11,28 +13,52 @@ public class Screen {
         this.height = height;
         this.width = width;
 
-        this.initList(height, width);
+        this.initList();
     }
 
     public void Render(){
-        for(Position pos.getX() : renderList.keyset()) {
-            if(o == null)
-                System.out.print(Ground.getRenderObject);
-            else
-                System.out.print(o.getRenderObject());
+        for(int i = 0; i < this.height; i++) {          // i = y
+            for(int j = 0; j < this.width; j++) {       // j = x
+                //Object o = renderList.get(new Position(j, i));
+                Object o = rl[j][i].getObj();
+                if(o == null)
+                    //System.out.print('l');
+                    System.out.print(Ground.getRenderObject());
+                else
+                    //System.out.print('*');
+                    System.out.print(o.getRenderObject());
+            }
+            System.out.println();
         }
     }
 
+    public void Clear() {
+    	try {
+			Runtime.getRuntime().exec("clear");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+    }
+
     public void Add(Position pos, Object obj) {
-        this.renderList.put(pos, obj);
+        //this.renderList.put(pos, obj);
+        this.rl[pos.getX()][pos.getY()] = new RenderObject(pos, obj);
+        //this.renderList.replace(pos, obj);
     }
 
     public void Delete() {}
 
-    public void initList(int height, int width) { // Needs to have all positions
-        for(int i = 0; i < height; i++) {       // i = y
-            for(int j = 0; j < width; j++) {    // j = x
-                this.renderList.put(new Position(j, i), null);
+    public void initList() { // Needs to have all positions
+        //this.renderList = new HashMap<Position, Object>();
+        this.rl = new RenderObject[this.width][this.height];
+        for(int i = 0; i < this.height; i++) {       // i = y
+            for(int j = 0; j < this.width; j++) {    // j = x
+                //this.renderList.put(new Position(j, i), null);
+                this.rl[j][i] = new RenderObject(new Position(j, i), null);
+            }
         }
     }
+
+    private void reverseRenderList(){}
 }

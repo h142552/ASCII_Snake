@@ -1,8 +1,8 @@
 package no.hib.dat100;
 
 public class Object implements Render{
-    private Position pos;
-    private char renderObject; // this is the symbol that is rendered to the screen
+    protected Position pos;
+    protected char renderObject; // this is the symbol that is rendered to the screen
 
     public Object(int x, int y, char renderObject) {
         this.pos = new Position(x, y);
@@ -16,6 +16,6 @@ public class Object implements Render{
     public void setRenderObject(char c) { this.renderObject = c; }
 
     public void Render(Screen sc) {
-        
+        sc.Add(pos, (Object) this); // trengs cast?
     }
 }
