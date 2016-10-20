@@ -1,5 +1,8 @@
 package no.hib.dat100;
 
-public class Fruit {
+public class Fruit extends Object {
 
+    public Fruit(int x, int y, char renderObject) {
+        super(x, y, renderObject);
+    }
 }
