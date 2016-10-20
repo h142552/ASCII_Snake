@@ -33,12 +33,12 @@ public class Screen {
     }
 
     public void Clear() {
-    	try {
-			Runtime.getRuntime().exec("clear");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+    	//try {
+            //Runtime.getRuntime().exec("clear");
+	//} catch (IOException e) {
+            //e.printStackTrace();
+	//} 
+	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
     public void Add(Position pos, Object obj) {

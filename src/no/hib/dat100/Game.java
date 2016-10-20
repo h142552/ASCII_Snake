@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 public class Game {
     private Screen sc;
     //private Ground ground;
+    private Wall wall;
     private Snake snake;
     private Fruit fruit;
 
@@ -17,7 +18,7 @@ public class Game {
         for(int a = 0; a < 3; a++) {
             this.update();
             try {
-                TimeUnit.MILLISECONDS.sleep(100);
+                TimeUnit.MILLISECONDS.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -27,7 +28,7 @@ public class Game {
 
     public void init() {
         this.sc = new Screen(10, 30);
-        this.snake = new Snake(2, 4, 'O', 'o', 3);
+        this.snake = new Snake(2, 4, 'X', 'o', 3);
         this.fruit = new Fruit(4, 2, '*');
     }
 
