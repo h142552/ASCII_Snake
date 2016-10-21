@@ -16,6 +16,6 @@ public class Object implements Render{
     public void setRenderObject(char c) { this.renderObject = c; }
 
     public void Render(Screen sc) {
-        sc.Add(pos, (Object) this); // trengs cast?
+        sc.Add((Object) this); // trengs cast?
     }
 }

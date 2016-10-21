@@ -14,7 +14,8 @@ public class SnakeBody extends Object {
 
     public void Render(Screen sc) {
         for(int i = 0; i < this.length; i++) {
-            sc.Add(body[i], (Object) this); // trengs cast?
+            this.pos = body[i]; // setter pos til this
+            sc.Add((Object) this); // trengs cast?
         }
     }
 

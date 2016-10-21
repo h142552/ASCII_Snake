@@ -5,7 +5,8 @@ import java.util.HashMap;
 
 public class Screen {
     //private HashMap<Position, Object> renderList;
-    private RenderObject[][] rl; // sorted array
+    //private RenderObject[][] rl; // sorted array
+    private Object[][] rl; // sorted array
     private int height;
     private int width;
 
@@ -13,6 +14,7 @@ public class Screen {
         this.height = height;
         this.width = width;
 
+        this.rl = new Object[this.width][this.height];
         this.initList();
     }
 
@@ -20,7 +22,7 @@ public class Screen {
         for(int i = 0; i < this.height; i++) {          // i = y
             for(int j = 0; j < this.width; j++) {       // j = x
                 //Object o = renderList.get(new Position(j, i));
-                Object o = rl[j][i].getObj();
+                Object o = rl[j][i];
                 if(o == null)
                     //System.out.print('l');
                     System.out.print(Ground.getRenderObject());
@@ -36,29 +38,35 @@ public class Screen {
     	//try {
             //Runtime.getRuntime().exec("clear");
 	//} catch (IOException e) {
-            //e.printStackTrace();
+            //e.printstacktrace();
 	//} 
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
+    public void Add(Object obj) {
+        //this.renderlist.put(pos, obj);
+        //this.rl[pos.getx()][pos.gety()] = new renderobject(pos, obj);
+        this.rl[obj.getPosition().getX()][obj.getPosition().getY()] = obj;
+        //this.renderlist.replace(pos, obj);
+    }
+
     public void Add(Position pos, Object obj) {
-        //this.renderList.put(pos, obj);
-        this.rl[pos.getX()][pos.getY()] = new RenderObject(pos, obj);
-        //this.renderList.replace(pos, obj);
+        this.rl[pos.getX()][pos.getY()] = obj;
     }
 
     public void Delete() {}
 
-    public void initList() { // Needs to have all positions
-        //this.renderList = new HashMap<Position, Object>();
-        this.rl = new RenderObject[this.width][this.height];
+    public void initList() { // needs to have all positions
+        //this.renderlist = new hashmap<position, object>();
         for(int i = 0; i < this.height; i++) {       // i = y
             for(int j = 0; j < this.width; j++) {    // j = x
-                //this.renderList.put(new Position(j, i), null);
-                this.rl[j][i] = new RenderObject(new Position(j, i), null);
+                //this.renderlist.put(new position(j, i), null);
+                this.rl[j][i] = null;
             }
         }
     }
+
+    //public void 
 
     private void reverseRenderList(){}
 }

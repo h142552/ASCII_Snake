@@ -5,7 +5,18 @@ import java.util.concurrent.TimeUnit;
 public class Game {
     private Screen sc;
     //private Ground ground;
-    private Wall wall;
+    private Level level;
+    private static String levelStr = (
+                    "##############################" + 
+                    "#                            #" + 
+                    "#                            #" + 
+                    "#                            #" + 
+                    "#                            #" + 
+                    "#                            #" + 
+                    "#                            #" + 
+                    "#                            #" + 
+                    "#                            #" + 
+                    "##############################");
     private Snake snake;
     private Fruit fruit;
 
@@ -15,28 +26,30 @@ public class Game {
 
     public void start() {
         this.draw();
-        for(int a = 0; a < 3; a++) {
+        for(int a = 0; a < 7; a++) {
             this.update();
+            this.draw();
             try {
                 TimeUnit.MILLISECONDS.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            this.draw();
         }
     }
 
     public void init() {
         this.sc = new Screen(10, 30);
-        this.snake = new Snake(2, 4, 'X', 'o', 3);
+        this.level = new Level(10, 30, levelStr);
+        this.snake = new Snake(4, 7, 'O', 'o', 3);
         this.fruit = new Fruit(4, 2, '*');
     }
 
     public void draw() {
-        this.sc.initList();
         this.sc.Clear();
+        //this.sc.initList();
+        this.level.Render(sc);
+        this.fruit.Render(sc);
         this.snake.Render(sc);
-        this.fruit.Render(sc); // fruit legges i rl
         this.sc.Render();
         
     }
